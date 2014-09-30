@@ -40,9 +40,9 @@ Enviando arquivo de retorno e recuperando informações de detalhes:
   
 Propriedades do Header
 ----------------------
-```TXT
+```
 PROPRIEDADE 			NOME DO CAMPO 				SIGNIFICADO 										POSICAO		PICTURE		CONTEUDO
-=================================================================================================================================================
+-------------------------------------------------------------------------------------------------------------------------------------------------
 TIPOREGISTRO 			TIPO DE REGISTRO 			IDENTIFICACAO DO REGISTRO HEADER					001 001		9(01)		0
 CODIGORETORNO			CODIGO DE RETORNO			IDENTIFICACAO DO ARQUIVO DE RETORNO					002 002		9(01)		2	
 LITERALDERETORNO 		LITERAL DE RETORNO 			IDENTIFICACAO PER EXTENSO DO TIPO DE MOVIMENTO		003 009		X(07)		RETORNO
@@ -63,4 +63,4 @@ NRSEQARQUIVORET		 	NR. SEQ. ARQUIVO RET.		NUMERO SEQUENCIAL DO ARQUIVO DE RETORN
 DATADECREDITO			DATA DE CREDITO				DATA DE CREDITO DOS LANCAMENTOS						114 119		9(09)		DDMMAA						
 BRANCOS02				BRANCOS 					COMPLEMENTO DO REGISTRO								120 394		X(275)		
 NRSEQUENCIAL			NUMERO SEQUENCIAL			NUMERO SEQUENCIAL DO REGISTRO NO ARQUIVO			120 394		9(06)		000001	
-```		
+```			
