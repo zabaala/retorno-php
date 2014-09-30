@@ -10,7 +10,7 @@
 		$retorno->setFile($_FILES['arquivo']);
 		
 		$header = $retorno->getHeader();
-		Utils::pre($header);
+		// Utils::pre($header);
 
 		$detalhes = $retorno->getDetalhes();
 		// Utils::pre($detalhes);

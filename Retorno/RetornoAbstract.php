@@ -91,6 +91,12 @@ abstract class RetornoAbstract {
 	protected $detalhes = array();
 
 	/**
+	 * Registro Trailer do arquivo de retorno
+	 * @var string
+	 */
+	protected $trailer;
+
+	/**
 	 * Constructor method
 	 * @param array $file (optional) Posted file via form
 	 * @return void
@@ -126,7 +132,8 @@ abstract class RetornoAbstract {
 	protected function process(){
 		$this->readFile()
 			->makeHeader()
-			->makeDetails();
+			->makeDetails()
+			->makeTrailer();
 
 		return $this;
 	}

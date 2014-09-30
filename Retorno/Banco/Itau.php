@@ -167,7 +167,38 @@ class Itau extends RetornoAbstract
 		
 		if(count($this->lines)==0) return null;
 
-		// $trailer
+		$line = end($this->lines);
+
+		if(substr($line, 0, 1)==9) {
+
+			$trailer = new \stdClass;										# NOME DO CAMPO 				SIGNIFICADO 									POSICAO 	PICTURE		CONTEUDO
+			$trailer->TIPODEREGISTRO 		= substr($line, 0, 1);			# TIPO DE REGISTRO 				IDENTIFICACAO DO REGISTRO TRAILER 				001 001 	9(01)		9		
+			$trailer->CODIGODERETORNO 		= substr($line, 1, 1);			# CODIGO DE RETORNO 			IDENTIFICACAO DE ARQUIVO RETORNO 				002 002 	9(01)		2		
+			$trailer->CODIGODESERVICO 		= substr($line, 2, 2);			# CODIGO DE SERVICO 			IDENTIFICACAO DO TIPO DE SERVICO				003 004 	9(02)		01		
+			$trailer->CODIGODOBANCO 		= substr($line, 4, 3);			# CODIGO DO BANCO 	 			IDENTIFICACAO DO BANCO NA COMPENSACAO			004 007 	9(03)		CODIGO DO BANCO
+			$trailer->BRANCOS01 			= substr($line, 7, 10);			# BRANCOS 	 					COMPLEMENTO DE REGISTRO							008 017 	X(10)		
+			$trailer->QTDEDETITULOS01		= substr($line, 17, 8);			# QTDE. DE TITULOS				QTDE. DE TITULOS EM COBRANCAS SIMPLES			018 025 	9(08)		NOTA 21
+			$trailer->VALORTOTAL01			= substr($line, 25, 14);		# VALOR TOTAL					VR TOTAL DOS TITULOS EM COBRANCAS SIMPLES		026 039 	9(12)V9(2)	NOTA 21	
+			$trailer->AVISOBANCARIO01		= substr($line, 39, 8);			# AVISO BANCARIO 	 			REFERENCIA DO AVISO BANCARIO					040 047 	X(08)		NOTA 22
+			$trailer->BRANCOS02				= substr($line, 47, 10);		# BRANCOS 	 					COMPLEMENTOS DE REGISTRO						048 057 	X(10)		
+			$trailer->QTDEDETITULOS02		= substr($line, 57, 8);			# QTDE. DE TITULOS				QTDE. DE TITULOS EM COBRANCA/VINCULADA			058 065 	9(08)		NOTA 21
+			$trailer->VALORTOTAL02			= substr($line, 65, 14);		# VALOR TOTAL					VR TOTAL DOS TITULOS EM COBRANCA/VINCULADA		066 079 	9(12)V9(2)	NOTA 21	
+			$trailer->AVISOBANCARIO02		= substr($line, 79, 8);			# AVISO BANCARIO 	 			REFERENCIA DO AVISO BANCARIO					080 087 	X(08)		NOTA 22
+			$trailer->BRANCOS03				= substr($line, 87, 90);		# BRANCOS 	 					COMPLEMENTOS DE REGISTRO						088 177 	X(90)		
+			$trailer->QTDEDETITULOS03		= substr($line, 177, 8);		# QTDE. DE TITULOS				QTDE. DE TITULOS EM COBR. DIRETA/ECRITURAL		178 185 	9(08)		NOTA 21
+			$trailer->VALORTOTAL03			= substr($line, 185, 14);		# VALOR TOTAL					VR TOTAL DOS TITULOS EM COBR. DIRETA/ECRITURAL	186 199 	9(12)V9(2)	NOTA 21	
+			$trailer->AVISOBANCARIO03		= substr($line, 199, 8);		# AVISO BANCARIO 	 			REFERENCIA DO AVISO BANCARIO					200 207 	X(08)		NOTA 22
+			$trailer->CONTROLEDOARQUIVO		= substr($line, 207, 5);		# CONTROLE DO ARQUIVO 	 		NUMERO SEQUENCIAL DO ARQUIVO RETORNO			208 212 	9(05)		
+			$trailer->QTDEDEDETALHES		= substr($line, 212, 8);		# QUANTIDADE DE DETALHES 	 	QUANTIDADE DE REGISTROS DE TRANSACAO			213 220 	9(08)		
+			$trailer->VRTOTALINFORMADO		= substr($line, 220, 14);		# VLR TOTAL INFORMADO	 	 	VALOR DOS TITULOS INFORMADOS NO ARQUIVO			221 234 	9(12)V9(2)		
+			$trailer->BRANCOS04				= substr($line, 234, 160);		# BRANCOS 	 					COMPLEMENTOS DE REGISTRO						235 394 	X(160)		
+			$trailer->NUMEROSEQUENCIAL		= substr($line, 394, 6);		# NUMERO SEQUENCIAL 	 		NUMERO SEQUENCIAL DO REGISTRO NO ARQUIVO 		395 400 	9(90)		
+
+			$this->trailer = $trailer;
+
+		} else {
+			return null;
+		}
 	}
 	
 }
