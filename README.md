@@ -23,19 +23,17 @@ Como Utilizar
 
 Enviando arquivo de retorno e recuperando informações de detalhes:
 
-  <?php 
-	  include("class.retorno.php");
+  ```php 
+<?php
 
-	  if($_SERVER['REQUEST_METHOD']=='POST'){
-		
-  		$retorno = new Retorno();
-  		$retorno->setFile($_FILES['arquivo']);
-  		
-  		foreach ($retorno->getDetalhes() as $detalhe) {
-  			echo $detalhe->VALORPRINCIPAL . '<br>';
-  		};
-  		
-  	}
-
-  ?>
-
+  if($_SERVER['REQUEST_METHOD']=='POST'){
+	
+  	$retorno = new Retorno();
+  	$retorno->setFile($_FILES['arquivo']);
+  	
+  	foreach ($retorno->getDetalhes() as $detalhe) {
+  		echo $detalhe->VALORPRINCIPAL . '<br>';
+  	};
+  	
+  }
+  ```
