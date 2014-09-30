@@ -21,7 +21,57 @@ Quem já possuir algo implementado e quiser contribuir, este positório aceita F
 Como Utilizar
 -------------
 
-Enviando arquivo de retorno e recuperando informações de detalhes:
+Crie um formulário HTML básico:
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Arquivo de Retorno:</title>
+</head>
+<body>
+	<form action="?" method="post" enctype="multipart/form-data">
+		<label for="arquivo">Selecione o arquivo:</label>
+		<input type="file" name="arquivo"><br>
+		<button type="submit">Enviar</button>
+	</form>
+</body>
+</html>
+```
+
+Depois de criar o arquivo HTML, crie um arquivo PHP, que receberá o POST do formulário. Neste arquivo você poderá instanciar o objeto de três formas direfentes e de sua livre escolha.
+
+1. Instanciando o banco:
+```php
+<?php 
+	use Retorno\Banco\Itau
+	use Retorno\Utils;
+
+	$retorno = new Itau();
+	$retorno->setFile($_FILE['arquivo']);
+?>
+```
+2. Instanciando pelo nome do banco via Factory:
+```php
+<?php 
+	use Retorno\RetornoFactory;
+	use Retorno\Utils;
+
+	$retorno = new RetornoFactory::banco('Itau');
+	$retorno->setFile($_FILE['arquivo']);
+?>
+```
+3. Instanciando pelo número do banco via Factory:
+```php
+<?php 
+	use Retorno\RetornoFactory;
+	use Retorno\Utils;
+
+	$retorno = new RetornoFactory::code(341);
+	$retorno->setFile($_FILE['arquivo']);
+?>
+```
 
   ```php 
 <?php
