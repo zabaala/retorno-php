@@ -74,7 +74,7 @@ Propriedades de Detalhes
 
 Ao chamar o método $retorno->getDetalhes(), será retornado um array onde em cada indice conterá as propriedades abaixo listadas e seus respectivos valores. 
 
-```TXT
+```
 PROPRIEDADE 				NOME DO CAMPO 				SIGNIFICADO 										POSICAO		PICTURE		CONTEUDO
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TIPODEREGISTRO 				TIPO DE REGISTRO 			IDENTIFICACAO DO REGISTRO HEADER					001 001		9(01)		0
