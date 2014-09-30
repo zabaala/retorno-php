@@ -159,11 +159,15 @@ class Itau extends RetornoAbstract
 
 
 	/**
-	 * 
-	 * 
+	 * Método onde deve ser implementada a leitura do Registro Trailer do arquivo.
+	 * O Registro Trailer é a última linha, onde o Tipo de Registro possuem valor 9.
+	 * @return RetornoAbstract Object 
 	 */
-	protected function makeTrailler() {
+	protected function makeTrailer() {
+		
+		if(count($this->lines)==0) return null;
 
+		// $trailer
 	}
 	
 }

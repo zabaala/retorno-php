@@ -183,14 +183,6 @@ abstract class RetornoAbstract {
 
 
 	/**
-	 * Método onde deve ser implementada a leitura do Trailler do arquivo.
-	 * Os detalhes são linhas onde o Tipo de Registro possuem valor 9.
-	 * @return RetornoAbstract Object 
-	 */
-	protected abstract function makeTrailler();
-
-
-	/**
 	 * Retorna um array com todos detalhes.
 	 * Cada indice do array, corresponde à uma linha do arquivo de retorno.
 	 * @return array
@@ -198,6 +190,16 @@ abstract class RetornoAbstract {
 	public function getDetalhes() {
 		return $this->detalhes;
 	}
+
+
+	/**
+	 * Método onde deve ser implementada a leitura do Registro Trailer do arquivo.
+	 * O Registro Trailer é a última linha, onde o Tipo de Registro possuem valor 9.
+	 * @return RetornoAbstract Object 
+	 */
+	protected abstract function makeTrailer();
+
+
 
 	
 }

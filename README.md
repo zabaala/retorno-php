@@ -1,7 +1,7 @@
 Arquivo de Retorno
 ==================
 
-Classe em PHP que implementa uma interface IRetorno, para a leitura e o processamentos dos dados contidos no arquivo de retorno padrão CNAB400.
+Classes em PHP que lhe auxiliarão a processar os dados contidos no arquivo de retorno enviado pelo banco.
 
 ---
 
@@ -16,7 +16,7 @@ A lista de bancos que ainda serão implementados é a seguinte:
 * HSBC
 * Santander
 
-Quem já possuir algo implementado e quiser contribuir, este positório aceita Forks, portanto... Fiquem à vontade! =) 
+Quem já possuir algo implementado e quiser contribuir, este positório aceita Forks!! Portanto: Fiquem à vontade! =) 
 
 Como Utilizar
 -------------
@@ -102,13 +102,13 @@ CONTA 					AGENCIA 					AGENCIA MANTEDORA DA CONTA							033 037		9(05)
 DAC 					DAC 						DIGITO DE AUTOCONFERENCIA AG/CONTA DA EMPRESA		038 038		9(01)		
 BRANCOS01				BRANCOS 					COMPLEMENTO DO REGISTRO								039 046		X(08)		
 NOMEDAEMPRESA			NOME DA EMPRESA				NOME POR EXTENSO DA EMPRESA MAE						047 076		X(30)		
-CODIGODOBANCO			CODIGO DO BANCO				NUMERO DO BANCO NA CAMARA DE COMPENSACAO			077 079		9(03)		NUMERO DO BANCO		
+CODIGODOBANCO			CODIGO DO BANCO				NUMERO DO BANCO NA CAMARA DE COMPENSACAO			077 079		9(03)		NUMERO DO BANCO	
 NOMEDOBANCO			 	NOME DO BRANCOS				NOME POR EXTENSO DO BANCO COBRADOR					080 094		9(15)		NOME DO BANCO	
 DATADEGERACAO			DATA DE GERACAO				DATA DE GERACAO DO ARQUIVO							095 100		9(06)		DDMMAA		
 DENSIDADE				DENSIDADE					UNIDADE DA DENSIDADE								101 105		9(05)				
 UNIDADEDEDENSID		 	UNIDADE DE DENSID.			DENSIDADE DA GRAVACAO DO ARQUIVO					106 108		X(03)		BPI				
 NRSEQARQUIVORET		 	NR. SEQ. ARQUIVO RET.		NUMERO SEQUENCIAL DO ARQUIVO DE RETORNO				109 113		9(05)						
-DATADECREDITO			DATA DE CREDITO				DATA DE CREDITO DOS LANCAMENTOS						114 119		9(09)		DDMMAA						
+DATADECREDITO			DATA DE CREDITO				DATA DE CREDITO DOS LANCAMENTOS						114 119		9(09)		DDMMAA			
 BRANCOS02				BRANCOS 					COMPLEMENTO DO REGISTRO								120 394		X(275)		
 NRSEQUENCIAL			NUMERO SEQUENCIAL			NUMERO SEQUENCIAL DO REGISTRO NO ARQUIVO			120 394		9(06)		000001	
 ```	
@@ -116,11 +116,22 @@ NRSEQUENCIAL			NUMERO SEQUENCIAL			NUMERO SEQUENCIAL DO REGISTRO NO ARQUIVO			12
 Propriedades de Detalhes
 ------------------------
 
-Ao chamar o método $retorno->getDetalhes(), será retornado um array onde em cada indice conterá as propriedades abaixo listadas e seus respectivos valores. 
+Acessando as propriedades dos *Detalhes* do arquivo processado:
+
+```php
+<?php 
+$detalhes = $retorno->getDetalhes();
+foreach ($detalhes as $detalhe) {
+	echo $detalhes->VALORPRINCIPAL . '<br>';
+}
+?>
+```
+
+Após chamar o método $retorno->getDetalhes(), será retornado um array onde em cada item do array corresponde à uma ocorrência. conterá as propriedades abaixo listadas e seus respectivos valores. 
 
 ```
 PROPRIEDADE 				NOME DO CAMPO 				SIGNIFICADO 										POSICAO		PICTURE		CONTEUDO
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------
 TIPODEREGISTRO 				TIPO DE REGISTRO 			IDENTIFICACAO DO REGISTRO HEADER					001 001		9(01)		0
 CODIGODEINSCRICAO 			CODIGO DE INSCRICAO			IDENTIFICACAO DO TIPO DE INSCRICAO/EMPRESA			002 003		9(02)		01=CPF 02=CNPJ	
 NUMERODEINSCRICAO 			NUMERO DE INSCRICAO			NUMERO DE INSCRICAO DA EMPRESA (CPF/CNPJ)			004 017		9(14)		
@@ -147,7 +158,7 @@ VALORDOTIULO				VALOR DO DOCUMENTO			VALOR NOMINAL DO DOCUMENTO 							153 165		
 CODIGODOBANCO				CODIGO DO BANCO				NUMERO DO BANCO NA CAMARA DE COMPENSACAO			166 168		9(09)	
 AGENCIACOBRADORA			AGENCIA COBRADORA			AG. COBRADORA, AG. DE LIQUIDACAO OU BAIXA			169 172		9(04)		NOTA 9	
 DACAGCOBRADORA				DAC AG. COBRADORA			DAC DA AGENCIA COBRADORA							173 173		9(01)			
-ESPECIE						ESPECIE						ESPECIE DO TITULO									174 175		9(02)		NOTA 10			
+ESPECIE						ESPECIE						ESPECIE DO TITULO									174 175		9(02)		NOTA 10		
 TARIFADECOBRANCA			VALOR DO DOCUMENTO			VALOR DA DESPESA DE COBRANCA						176 188		9(11)V9(2)	
 BRANCOS05					BRANCOS 					COMPLEMENTO DO REGISTRO								189 214		X(26)		
 VALORDOIOF					VALOR DO IOF				VALOR DO IOF A SER RECOLHIDO (NOTAS SEGURO)			215 227		9(11)V9(2)			
