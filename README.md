@@ -42,7 +42,7 @@ Crie um formulário HTML básico:
 
 Depois de criar o arquivo HTML, crie um arquivo PHP, que receberá o POST do formulário. Neste arquivo você poderá instanciar o objeto de três formas direfentes e de sua livre escolha.
 
-1. Instanciando o banco:
+*Instanciando diretamente o banco desejado:*
 ```php
 <?php 
 	use Retorno\Banco\Itau
@@ -52,7 +52,7 @@ Depois de criar o arquivo HTML, crie um arquivo PHP, que receberá o POST do for
 	$retorno->setFile($_FILE['arquivo']);
 ?>
 ```
-2. Instanciando pelo nome do banco via Factory:
+*Instanciando pelo nome do banco via Factory:*
 ```php
 <?php 
 	use Retorno\RetornoFactory;
@@ -62,7 +62,7 @@ Depois de criar o arquivo HTML, crie um arquivo PHP, que receberá o POST do for
 	$retorno->setFile($_FILE['arquivo']);
 ?>
 ```
-3. Instanciando pelo número do banco via Factory:
+*Instanciando pelo número do banco via Factory:*
 ```php
 <?php 
 	use Retorno\RetornoFactory;
@@ -73,23 +73,17 @@ Depois de criar o arquivo HTML, crie um arquivo PHP, que receberá o POST do for
 ?>
 ```
 
-  ```php 
-<?php
+Header 
+------
 
-  if($_SERVER['REQUEST_METHOD']=='POST'){
-	
-  	$retorno = new Retorno();
-  	$retorno->setFile($_FILES['arquivo']);
-  	
-  	foreach ($retorno->getDetalhes() as $detalhe) {
-  		echo $detalhe->VALORPRINCIPAL . '<br>';
-  	};
-  	
-  }
-  ```
-  
-Propriedades do Header
-----------------------
+Acessando as propriedades do *Header* do arquivo processado:
+
+```php
+<?php 
+$header = $retorno->getHeader();
+echo $header->TIPOREGISTRO;
+?>
+```
 
 Após chamar o método $retorno->getHeader(), será retornado uma stdClass (Anonymous Class) com as propriedades abaixo listadas.
 As propriedades foram criadas de acordo com os nomes existentes no arquivo de cobrança do Banco Itaú.
