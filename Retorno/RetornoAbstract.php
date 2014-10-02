@@ -166,7 +166,7 @@ abstract class RetornoAbstract {
 
 	/**
 	 * Recupera Header do arquivo lido
-	 * @return string
+	 * @return stdClass Object
 	 */
 	public function getHeader() {
 		return $this->header;
@@ -192,6 +192,8 @@ abstract class RetornoAbstract {
 	/**
 	 * Retorna um array com todos detalhes.
 	 * Cada indice do array, corresponde à uma linha do arquivo de retorno.
+	 * Todos os dados processados, em cada linha existente, foi transformado em um atributo
+	 * de um objeto anônimo stdClass.
 	 * @return array
 	 */
 	public function getDetalhes() {
@@ -207,7 +209,14 @@ abstract class RetornoAbstract {
 	protected abstract function makeTrailer();
 
 
-
+	/**
+	 * Retorna o Trailer do arquivo em forma de objeto stdClass.
+	 * O Trailer é a linha onde o TIPODEREGISTRO possui o valor 9.
+	 * @return stdClass Object
+	 */
+	public function getTrailer() {
+		return $this->trailer;
+	}
 	
 }
 

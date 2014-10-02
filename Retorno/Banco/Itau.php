@@ -33,6 +33,7 @@ use Retorno\Utils;
 
 /**
  * Classe para leitura do arquivo de retorno do Banco Itau S.A.
+ * Manual utilizado: COBRANCA_CNAB400_VERSAO7_0_JUN_2013.pdf
  * 
  * @package    Retorno
  * @author     Mauricio Rodrigues <mauricio.vsr@gmail.com>
