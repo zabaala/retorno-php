@@ -97,6 +97,16 @@ abstract class RetornoAbstract {
 	protected $trailer;
 
 	/**
+	 * Indica o canal utilizado pelo PAGADOR para pagamento do BOLETO e, para clientes que possuem 
+	 * o credito das liquidacoes separado em funcao do recurso utilizado no pagamento, indica 
+	 * se o credito do valor correspondente estara “disponivel” ou “a compensar” na data do 
+	 * lancamento em conta corrente.
+	 * @var array
+	 */
+	protected $codigoLiquidacao = array();
+
+
+	/**
 	 * Constructor method
 	 * @param array $file (optional) Posted file via form
 	 * @return void
@@ -106,6 +116,8 @@ abstract class RetornoAbstract {
 			$this->setFile($file);
 		}
 	}
+
+
 
 
 	/**
@@ -198,6 +210,31 @@ abstract class RetornoAbstract {
 	 */
 	public function getDetalhes() {
 		return $this->detalhes;
+	}
+
+	/**
+	 * Retorna a descrição para o código de liquidação informado
+	 * @param string $codigo
+	 * @return string|midex Retorna a descrição ou NULL caso seja informado um código desconhecido/inexistente.  
+	 */
+	public function getDescricaoLiquidacao($codigo) {
+		if (array_key_exists($codigo, $this->codigoLiquidacao)) {
+			return $this->codigoLiquidacao[$codigo]['descricao'];
+		};
+		return null;
+	}
+
+
+	/**
+	 * Retorna a descrição para o código de liquidação informado
+	 * @param string $codigo
+	 * @return string|midex Retorna a descrição ou NULL caso seja informado um código desconhecido/inexistente.  
+	 */
+	public function getRecursoLiquidacao($codigo) {
+		if (array_key_exists($codigo, $this->codigoLiquidacao)) {
+			return $this->codigoLiquidacao[$codigo]['recurso'];
+		};
+		return null;
 	}
 
 

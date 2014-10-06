@@ -14,7 +14,7 @@
 		$detalhes = $retorno->getDetalhes();
 
 		foreach ($detalhes as $detalhe) {
-			echo $detalhe->NOSSONUMERO01 .' - '. Utils::numberFormat($detalhe->VALORPRINCIPAL, false) . '<br>';
+			echo "(" . $retorno->getRecursoLiquidacao($detalhe->CODIGODELIQUIDACAO) . ") " . $detalhe->DATACREDITO . " - " . $detalhe->NOSSONUMERO01 .' - '. Utils::numberFormat($detalhe->VALORPRINCIPAL, false) . '<br>';
 		};
 
 		echo "<hr>";
