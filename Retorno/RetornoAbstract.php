@@ -118,8 +118,6 @@ abstract class RetornoAbstract {
 	}
 
 
-
-
 	/**
 	 * Define arquivo de retorno a ser lido.
 	 * @return RetornoAbstract Object
@@ -244,6 +242,7 @@ abstract class RetornoAbstract {
 	public function getDetalhes() {
 		return $this->detalhes;
 	}
+	
 
 	/**
 	 * Retorna a descrição para o código de liquidação informado
