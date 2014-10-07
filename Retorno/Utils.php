@@ -96,4 +96,27 @@ class Utils{
 		return $raw ? number_format($tmp,2,".","") : number_format($tmp, 2, ',', '.');
 	}
 
+
+	/**
+	 * Método para tratar as datas existentes no arquivo de retorno.
+	 * 
+	 * @param string $data data no formato (dmy - 311214)
+	 * @param string $formatToReturn Formato da data que será retornada. More info: http://php.net/manual/en/datetime.formats.php
+	 * @param string $timezone Representation of time zone. More info: http://php.net/manual/en/class.datetimezone.php
+	 * @return mixed string|DateTime Object
+	 */
+	public static function dateFormat($data, $formatToReturn = null, $timezone = 'America/Fortaleza'){
+		
+		$dia = substr($data, 0, 2);
+		$mes = substr($data, 2, 2);
+		$ano = '20' . substr($data, 4, 2);
+		
+		$format = "{$ano}-{$mes}-{$dia}";
+		
+		$dateTime = new DateTime($format, new DateTimeZone($timezone));
+		
+		return is_null($formatToReturn) ? $dateTime : $dateTime->format($formatToReturn);
+
+	}
+
 }
