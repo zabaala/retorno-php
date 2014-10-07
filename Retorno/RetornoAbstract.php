@@ -199,7 +199,7 @@ abstract class RetornoAbstract {
 		$_file = $this->local . DIRECTORY_SEPARATOR . $this->fileName;
 
 		if(!is_dir($this->local))
-			throw new Exception("Local informado invalido.");
+			throw new Exception("Local informado invalido / inexistente.");
 		
 		elseif(!is_writable($this->local))
 			throw new Exception("Local informado nao possui permissao para escrita.");
