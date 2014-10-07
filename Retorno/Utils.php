@@ -113,7 +113,7 @@ class Utils{
 		
 		$format = "{$ano}-{$mes}-{$dia}";
 		
-		$dateTime = new DateTime($format, new DateTimeZone($timezone));
+		$dateTime = new \DateTime($format, new \DateTimeZone($timezone));
 		
 		return is_null($formatToReturn) ? $dateTime : $dateTime->format($formatToReturn);
 
