@@ -8,7 +8,7 @@
 		
 		$retorno = RetornoFactory::banco('Itau');
 		$retorno->setFile($_FILES['arquivo']);
-		
+
 		$header = $retorno->getHeader();
 
 		$detalhes = $retorno->getDetalhes();

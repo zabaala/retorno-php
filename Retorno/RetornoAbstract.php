@@ -175,6 +175,39 @@ abstract class RetornoAbstract {
 		return $this;
 	}
 
+	/**
+	 * Retorna o nome do arquivo
+	 * @return string
+	 */
+	public function getFileName() {
+		return $this->fileName;
+	}
+
+
+	/**
+	 * Retorna o tipo do arquivo
+	 * @return string
+	 */
+	public function getFileType() {
+		return $this->fileType;
+	}
+
+	/**
+	 * Retorna o tmp_name do arquivo
+	 * @return string
+	 */
+	public function getFileTempName() {
+		return $this->fileTempName;
+	}
+
+	/**
+	 * Retorna o tamanho do arquivo
+	 * @return int
+	 */
+	public function getFileSize() {
+		return $this->fileSize;
+	}
+
 
 	/**
 	 * Recupera Header do arquivo lido
