@@ -234,7 +234,4 @@ class Itau extends RetornoAbstract
 			return null;
 		}
 	}
-	
 }
-
-?>

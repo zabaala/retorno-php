@@ -105,6 +105,12 @@ abstract class RetornoAbstract {
 	 */
 	protected $codigoLiquidacao = array();
 
+	/**
+	 * Indica o local onde o arquivo de retorno deverá ser salvo
+	 * @var string
+	 */
+	public $local = null;
+
 
 	/**
 	 * Constructor method
@@ -150,7 +156,7 @@ abstract class RetornoAbstract {
 
 
 	/**
-	 * Read all existing lines from posted file
+	 * Recupera todas as linhas existentes no arquivo postado
 	 * @return Retorno Object
 	 */
 	protected function readFile(){
@@ -169,6 +175,38 @@ abstract class RetornoAbstract {
 		}
 
 		fclose($fileHandle);
+
+		return $this;
+	}
+
+	
+	/**
+	 * Salva o arquivo de retorno 
+	 * @param string $local Opicional. Local onde o arquivo deverá ser salvo.
+	 * Se não informado, requer que o local seja setado via $this->local = 'path'. 
+	 * 
+	 * @return Retorno Object 
+	 */
+	public function save($local=null) {
+
+		if(!is_null($local)) 
+			$this->local = $local;
+
+		if(is_null($this->local) || $this->local=='') {
+			throw new Exception("O local onde o arquivo deverá ser salvo não foi informado. Contate o administrador do sistema.");
+		}
+
+		$_file = $this->local . DIRECTORY_SEPARATOR . $this->fileName;
+
+		if(!is_dir($this->local))
+			throw new Exception("Local informado invalido.");
+		
+		elseif(!is_writable($this->local))
+			throw new Exception("Local informado nao possui permissao para escrita.");
+		
+		else
+			move_uploaded_file($this->fileTempName, $_file);
+		
 
 		return $this;
 	}
@@ -242,7 +280,7 @@ abstract class RetornoAbstract {
 	public function getDetalhes() {
 		return $this->detalhes;
 	}
-	
+
 
 	/**
 	 * Retorna a descrição para o código de liquidação informado
@@ -288,5 +326,3 @@ abstract class RetornoAbstract {
 	}
 	
 }
-
-?>

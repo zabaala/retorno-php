@@ -7,7 +7,7 @@
 	if($_SERVER['REQUEST_METHOD']=='POST'){
 		
 		$retorno = RetornoFactory::banco('Itau');
-		$retorno->setFile($_FILES['arquivo']);
+		$retorno->setFile($_FILES['arquivo'])->save('retorno');
 
 		$header = $retorno->getHeader();
 
